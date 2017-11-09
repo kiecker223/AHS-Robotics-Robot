@@ -12,6 +12,16 @@ int deadBand;
 void UpdateServos();
 void UpdateWheels();
 
+
+int AbsoluteValue(int value)
+{
+	if (value < 0)
+	{
+		return value * -1;
+	}
+	return value;
+}
+
 task main()
 {
 	// Declare variables
@@ -55,12 +65,12 @@ void UpdateWheels()
 	int channel2 = vexRT[Ch2];
 	int channel3 = vexRT[Ch3];
 
-	if (channel2 > deadBand)
+	if (AbsoluteValue(channel2) > deadBand)
 	{
-		motor[wheelRight] = vexRT[Ch2]; // Set the right motor equal to the right joystick h
+		motor[wheelRight] = channel2; // Set the right motor equal to the right joystick h
 	}
-	if (channel3 > deadBand)
+	if (AbsoluteValue(channel3) > deadBand)
 	{
-		motor[wheelLeft] = vexRT[Ch3]; // Set the left motor equal to the left joystick pitch
+		motor[wheelLeft] = channel3; // Set the left motor equal to the left joystick pitch
 	}
 }
