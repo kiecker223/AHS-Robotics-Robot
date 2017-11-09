@@ -26,6 +26,7 @@ task main()
 {
 	// Declare variables
 	bLauncherIsLocked = false;
+	deadBand = 17;
 
 	while (true)
 	{
