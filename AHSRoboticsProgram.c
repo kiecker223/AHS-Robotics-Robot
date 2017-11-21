@@ -49,6 +49,7 @@ task main()
 	bArmsAreExtended = false;
 	bArmsToggledLastFrame = false;
 	InitSettings();
+	InitMotors();
 
 	while (true)
 	{
