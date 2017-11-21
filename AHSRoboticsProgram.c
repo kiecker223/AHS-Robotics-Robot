@@ -18,8 +18,6 @@
 
 typedef struct ControllerSettings
 {
-	int RaiseButton;
-	int DropButton;
 	int CatapultPrep;
 	int CatapultRelease;
 	int GrabberToggle;
@@ -41,6 +39,7 @@ void UpdateCatapult();
 void UpdateGrabber();
 void UpdateLift();
 void InitSettings();
+void InitMotors();
 int AbsoluteValue(int value);
 
 
@@ -58,7 +57,7 @@ task main()
 		UpdateGrabber();
 		UpdateLift();
 		UpdateWheels(); // Run the Code contained within "UpdateWheels()"
-		sleep(100);
+		sleep(200);
 	}
 }
 
@@ -190,8 +189,6 @@ void UpdateLift()
 
 void InitSettings()
 {
-	Settings.RaiseButton = Btn6U;
-	Settings.DropButton = Btn6D;
 	Settings.ArmLockButton = Btn8R;
 	Settings.CatapultPrep = Btn8U;
 	Settings.CatapultRelease = Btn8D;
@@ -199,6 +196,17 @@ void InitSettings()
 	Settings.LiftButtonUp = Btn5U;
 	Settings.LiftButtonDown = Btn5D;
 	Settings.DeadBand = 25;
+}
+
+void InitMotors()
+{
+	motor[wheelLeft] = 0;
+	motor[leftClawServo] = ARM_LEFT_UNLOCK_POSITION;
+	motor[motorLift] = 0;
+	motor[rightClawServo] = ARM_RIGHT_UNLOCK_POSITION;
+	motor[mannyGrabber] = CLAW_UNLOCK_POSITION;
+	motor[catapultMotor] = 0;
+	motor[wheelRight] = 0;
 }
 
 int AbsoluteValue(int value)
